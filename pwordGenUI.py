@@ -3,7 +3,7 @@ from pwordGen import pwordGenn
 from PyQt5 import QtWidgets, QtGui
 import sys
 
-class Pencere(QtWidgets.QWidget):
+class Window(QtWidgets.QWidget):
     def __init__(self):
         super().__init__()
 
@@ -12,32 +12,32 @@ class Pencere(QtWidgets.QWidget):
     def generate(self,digits):
         result = pwordGenn(digits)
 
-        self.label_2.setText("Şifreniz: " + result)
+        self.label_2.setText("Your password is: " + result)
 
     def init_ui(self):
 
-        self.label_1 = QtWidgets.QLabel("Kaç Haneli Bir Şifre Üretmek İstediğinizi Girin")
-        self.buton = QtWidgets.QPushButton("Şifre Üret")
-        self.yazi_alani = QtWidgets.QLineEdit()
+        self.label_1 = QtWidgets.QLabel("How long would you like your password to be: ")
+        self.buton = QtWidgets.QPushButton("GENERATE")
+        self.type_space = QtWidgets.QLineEdit()
         self.label_2 = QtWidgets.QLabel("")
 
 
         v_box = QtWidgets.QVBoxLayout()
         v_box.addWidget(self.label_1)
         v_box.addStretch()
-        v_box.addWidget(self.yazi_alani)
+        v_box.addWidget(self.type_space)
         v_box.addWidget(self.label_2)
         v_box.addStretch()
         v_box.addWidget(self.buton)
 
-        self.buton.clicked.connect(lambda x : self.generate(self.yazi_alani.text()))
+        self.buton.clicked.connect(lambda x : self.generate(self.type_space.text()))
 
 
         self.setLayout(v_box)
-        self.setWindowTitle("Şifre Üreticisi")
+        self.setWindowTitle("Python Password Generator")
         self.show()
 
 
 app = QtWidgets.QApplication(sys.argv)
-pencere = Pencere()
+window = Window()
 sys.exit(app.exec_())
