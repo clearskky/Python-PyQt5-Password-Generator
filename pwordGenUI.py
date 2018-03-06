@@ -12,7 +12,10 @@ class Window(QtWidgets.QWidget):
     def generate(self,digits):
         result = pwordGenn(digits)
 
-        self.label_2.setText("Your password is: " + result)
+        self.label_2.setText("Your password is: " + result +"\nThe generated password is copied to your clipboard.")
+        
+        cb = app.clipboard() # Create a clipboard object
+        cb.setText(result) # Copy the generated password to clipboard
 
     def init_ui(self):
 
